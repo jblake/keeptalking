@@ -1,0 +1,67 @@
+POSITIONS = {
+    "" => "bottom left",
+    "blank" => "middle right",
+    "c" => "top right",
+    "cee" => "bottom right",
+    "display" => "bottom right",
+    "first" => "top right",
+    "hold on" => "bottom right",
+    "lead" => "bottom right",
+    "led" => "middle left",
+    "leed" => "bottom left",
+    "no" => "bottom right",
+    "nothing" => "middle left",
+    "okay" => "top right",
+    "read" => "middle right",
+    "red" => "middle right",
+    "reed" => "bottom left",
+    "says" => "bottom right",
+    "see" => "bottom right",
+    "their" => "middle right",
+    "there" => "bottom right",
+    "they are" => "middle left",
+    "they're" => "bottom left",
+    "ur" => "top left",
+    "yes" => "middle left",
+    "you are" => "bottom right",
+    "you" => "middle right",
+    "you're" => "middle right",
+    "your" => "middle right",
+}
+
+SEQUENCES = {
+    "blank" => [ "wait", "right", "okay", "middle", "blank" ],
+    "done" => [ "sure", "uh huh", "next", "what?", "your", "ur", "you're", "hold", "like", "you", "u", "you are", "uh uh", "done" ],
+    "first" => [ "left", "okay", "yes", "middle", "no", "right", "nothing", "uhhh", "wait", "ready", "blank", "what", "press", "first" ],
+    "hold" => [ "you are", "u", "done", "uh uh", "you", "ur", "sure", "what?", "you're", "next", "hold" ],
+    "left" => [ "right", "left" ],
+    "like" => [ "you're", "next", "u", "ur", "hold", "done", "uh uh", "what?", "uh huh", "you", "like" ],
+    "middle" => [ "blank", "ready", "okay", "what", "nothing", "press", "no", "wait", "left", "middle" ],
+    "next" => [ "what?", "uh huh", "uh uh", "your", "hold", "sure", "next" ],
+    "no" => [ "blank", "uhhh", "wait", "first", "what", "ready", "right", "yes", "nothing", "left", "press", "okay", "no" ],
+    "nothing" => [ "uhhh", "right", "okay", "middle", "yes", "blank", "no", "press", "left", "what", "wait", "first", "nothing" ],
+    "okay" => [ "middle", "no", "first", "yes", "uhhh", "nothing", "wait", "okay" ],
+    "press" => [ "right", "middle", "yes", "ready", "press" ],
+    "ready" => [ "yes", "okay", "what", "middle", "left", "press", "right", "blank", "ready" ],
+    "right" => [ "yes", "nothing", "ready", "press", "no", "wait", "what", "right" ],
+    "sure" => [ "you are", "done", "like", "you're", "you", "hold", "uh huh", "ur", "sure" ],
+    "u" => [ "uh huh", "sure", "next", "what?", "you're", "ur", "uh uh", "done", "u" ],
+    "uh huh" => [ "uh huh" ],
+    "uh uh" => [ "ur", "u", "you are", "you're", "next", "uh uh" ],
+    "ur" => [ "done", "u", "ur" ],
+    "wait" => [ "uhhh", "no", "blank", "okay", "yes", "left", "first", "press", "what", "wait" ],
+    "what" => [ "uhhh", "what" ],
+    "what?" => [ "you", "hold", "you're", "your", "u", "done", "uh uh", "like", "you are", "uh huh", "ur", "next", "what?" ],
+    "yes" => [ "okay", "right", "uhhh", "middle", "first", "what", "press", "ready", "nothing", "yes" ],
+    "you are" => [ "your", "next", "like", "uh huh", "what?", "done", "uh uh", "hold", "you", "y", "you're", "sure", "ur", "you are" ],
+    "you" => [ "sure", "you are", "your", "you're", "next", "uh huh", "ur", "hold", "what?", "you" ],
+    "you're" => [ "you", "you're" ],
+    "your" => [ "uh uh", "you are", "uh huh", "your" ],
+}
+
+def who(*display)
+    prompt = display.join(" ")
+    $stdout.write("Label on button in position #{POSITIONS[prompt]}? ")
+    label = $stdin.readline.chomp
+    $stdout.write("Press the first button from this list:\n#{SEQUENCES[label].map { | button | "\t#{button}" }.join("\n")}\n")
+end
